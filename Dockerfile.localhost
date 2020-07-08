@@ -1,0 +1,36 @@
+FROM node:13.12.0-alpine
+
+WORKDIR /app
+
+# DOCKER ENVS
+ENV PATH /app/node_modules/.bin:$PATH
+
+# APP ENVS
+ENV NODE_ENV=production
+ENV REACT_APP_API_SCHEMA=http
+ENV REACT_APP_API_HOST=52.233.243.210
+ENV REACT_APP_API_PORT=8001
+
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.3.0 -g --silent
+
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]
+
+# to build
+# docker build --file Dockerfile.localhost --tag cscott/spdemo:0.0.1 .
+
+# to run
+# docker run \
+#               -it \
+#               --rm \
+#               -v ${PWD}:/app \
+#               -v /app/node_modules \
+#               -p 3001:3000 \
+#               -e CHOKIDAR_USEPOLLING=true \
+#               tech-demo:0.0.1

@@ -1,0 +1,1 @@
+export interface GreetingCounts extends Record<string, number> {}
