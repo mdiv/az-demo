@@ -9,11 +9,11 @@ const getAPIUrl = (path: string) =>
   `${schema}://${host}${port ? `:${port}` : ``}/${path}`;
 
 export const getGreeting: (name: string) => Promise<string> = async (name) => {
-  // return await new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve(`Hi ${name}`);
-  //   }, 2000);
-  // });
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Hi ${name}`);
+    }, 2000);
+  });
   try {
     const { data } = await axios.get(getAPIUrl(`api/greeting?name=${name}`));
     return data as string;
@@ -24,15 +24,15 @@ export const getGreeting: (name: string) => Promise<string> = async (name) => {
 };
 
 export const getCounts: () => Promise<GreetingCounts> = async () => {
-  // return await new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve({
-  //       hi: 1,
-  //       hello: 2,
-  //       somethingelse: 5,
-  //     });
-  //   }, 2000);
-  // });
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        hi: 1,
+        hello: 2,
+        somethingelse: 5,
+      });
+    }, 2000);
+  });
   try {
     const { data } = await axios.get(getAPIUrl(`api/greeting/counts`));
     return data as GreetingCounts;
